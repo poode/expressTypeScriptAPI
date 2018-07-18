@@ -1,0 +1,46 @@
+extends layout
+block content
+	if flash
+		div.alert(class='#{flash.type}')
+			ul
+			- for (var i = 0; i < flash.messages.length; i++) {
+					li #{flash.messages[i].msg}
+			- }
+			ul
+	.main.container
+		h1.display-4.m-b-2 Sign Up
+		// register form
+		form(method='POST' action='/registerUser')
+			div.row
+				div.col-md-6
+					div.form-group
+						label(for='username') Username:
+						input#username.form-control(type='text', placeholder='your username' name='username')
+					div.form-group
+						label(for='email') Email:
+						input#email.form-control(type='email', placeholder='name@email.com' name='email')
+					div.form-group
+						label(for='fullName') Full Name:
+						input#fullName.form-control(type='text', placeholder='your full name' name='fullName')
+					div.form-group.btn-group(data-toggle='buttons')
+						label.btn.btn-primary(for='male') Male
+							input#male.gender(type='radio' name='gender' value='0' autocomplete="off")
+						label.btn.btn-primary(for='female') Female
+							input#female.gender(type='radio' name='gender' value='1' autocomplete="off")
+						label.btn.btn-primary.active(for='other') Other
+							input#other.gender(type='radio' name='gender' value='2' autocomplete="off")
+				div.col-md-6
+					div.form-group
+						label(for='age') Age:
+						input#age.form-control(placeholder='your age' type='number' name='age')
+					div.form-group
+						label(for='password') Password:
+						input#password.form-control(placeholder='your passowrd', type='password' name='password')
+					div.form-group
+						label(for='password2') Confirm Password:
+						input#pw2.form-control(placeholder='your confirmation for passowrd' type='password' name='password2')
+						div.form-group
+						label(for='picture') Profile Picture:
+						input#picture.form-control(placeholder='your picture', type='file' name='profilePic')
+							
+			button.btn.btn-primary(type='submit') Sign up
